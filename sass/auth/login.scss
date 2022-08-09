@@ -1,0 +1,677 @@
+@import "../partials/common";
+@import "../partials/variable";
+
+body {
+  background-image: url("/assets/images/auth/login_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+a {
+  color: rgb(223, 173, 9);
+  font-weight: 500;
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: underline !important;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+
+// ==========Header Style Here==========
+.top_nav_section {
+  background: $secondaryBgColor;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+
+  .announcement_text {
+    text-align: center;
+    color: $backgroundColor;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .top_nav_items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .language_btn,
+    .money_btn,
+    .account_btn {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: $backgroundColor;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin: 0 15px;
+    }
+  }
+
+  .language_dropdown,
+  .money_dropdown {
+    ul.dropdown-menu {
+      background: $backgroundColor;
+      min-width: 0 !important;
+      width: 70px !important;
+      text-align: right;
+      padding: 5px 5px;
+      margin-top: 10px !important;
+      border: 0;
+      box-shadow: 0px 0px 24px rgb(0 0 0 / 8%);
+      z-index: 15;
+
+      .dropdown-item {
+        padding: 0;
+        color: $textColor;
+        font-weight: 600;
+        transition: all 0.5s ease-in-out;
+      }
+
+      .dropdown-item:hover {
+        color: $thirdTextColor;
+      }
+    }
+  }
+
+  .account_dropdown {
+    .dropdown-menu {
+      background: $backgroundColor;
+      min-width: 0 !important;
+      width: 240px !important;
+      height: 272px;
+      text-align: center;
+      padding: 5px 5px;
+      margin-top: 10px !important;
+      border: 0;
+      box-shadow: 0px 0px 24px rgb(0 0 0 / 8%);
+      z-index: 15;
+
+      input {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid $primaryBtnColor;
+        outline: 0;
+        color: $fourthTextColor;
+      }
+
+      .account_login_btn {
+        background: $thirdBtnColor;
+        color: $backgroundColor;
+        border-radius: 10px;
+      }
+
+      h6 {
+        color: $textColor;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      a {
+        color: $textColor;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 400;
+        text-decoration: none;
+        transition: all 0.5s ease-in-out;
+      }
+
+      a:hover {
+        color: $thirdBgColor;
+      }
+    }
+  }
+}
+
+//==============form css========
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 25px;
+}
+
+.login-wrap {
+  max-width: 450px;
+  background-color: rgba(78, 77, 77, 0.719);
+  width: 100%;
+  height: 450px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.user-icon {
+  font-size: 50px !important;
+}
+
+.login_title {
+  color: rgb(218, 214, 214);
+  // font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  text-align: center;
+
+  @media #{$mobile} {
+    font-size: 40px;
+  }
+
+  @media #{$mobileLarge} {
+    font-size: 35px;
+  }
+
+  @media #{$mobileMedium} {
+    font-size: 33px;
+  }
+}
+
+.form-label {
+  margin-bottom: 2px !important;
+  font-weight: 400 !important;
+  color: rgb(224, 219, 219);
+
+  @media #{$tablet} {
+    font-size: 14px !important;
+  }
+
+  @media #{$mobile} {
+    font-size: 14px !important;
+  }
+
+  @media #{$mobileLarge} {
+    font-size: 14px !important;
+  }
+
+  @media #{$mobileMedium} {
+    font-size: 13px;
+  }
+}
+
+.form-control {
+  @media #{$tablet} {
+    font-size: 15px !important;
+    padding: 2px 4px !important;
+  }
+
+  @media #{$mobile} {
+    font-size: 14px !important;
+    padding: 4px !important;
+  }
+
+  @media #{$mobileLarge} {
+    font-size: 14px !important;
+    padding: 2px !important;
+  }
+
+  @media #{$mobileMedium} {
+    padding: 2px !important;
+    font-size: 13px;
+  }
+}
+
+.input-group span {
+  font-size: 20px;
+  color: rgb(95, 94, 94);
+}
+
+.error {
+  color: rgb(248, 60, 27);
+  font-style: italic;
+  font-weight: 500;
+
+  //   visibility: hidden;
+  @media #{$tablet} {
+    font-size: 14px !important;
+  }
+
+  @media #{$mobile} {
+    font-size: 14px !important;
+  }
+
+  @media #{$mobileLarge} {
+    font-size: 14px !important;
+  }
+
+  @media #{$mobileMedium} {
+    font-size: 13px;
+  }
+}
+
+.submit_btn {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+// submit btn scss start
+.submit {
+  color: white;
+  background-color: rgb(117, 117, 116);
+  border-radius: 30px;
+  outline: none;
+  border: 1px solid rgb(211, 211, 211);
+  padding: 7px 30px;
+  transition: 0.3s;
+
+  @media #{$mobile} {
+    padding: 5px 25px;
+    font-size: 14px;
+  }
+
+  @media #{$mobileLarge} {
+    padding: 3px 15px;
+    font-size: 14px;
+  }
+
+  @media #{$mobileMedium} {
+    padding: 3px 15px;
+    font-size: 14px;
+  }
+}
+
+.submit:hover {
+  color: white;
+  background-color: rgb(233, 156, 12);
+}
+
+.login_footer {
+  margin-top: 15px;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(240, 240, 240);
+
+  a {
+    color: rgb(209, 206, 206);
+    font-weight: 400;
+  }
+
+  @media #{$mobile} {
+    font-size: 15px;
+  }
+
+  @media #{$mobileLarge} {
+    font-size: 14px;
+  }
+
+  @media #{$mobileMedium} {
+    font-size: 14px;
+  }
+}
+
+//============== Footer Style Here======
+.newsletter_section {
+  background: url("/assets/images/auth/newsletter_bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 48px;
+  padding-bottom: 62px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 0;
+    color: $textColor;
+    font-weight: 700;
+    font-size: 36px;
+  }
+
+  h4 {
+    text-align: center;
+    padding-bottom: 20px;
+    color: $textColor;
+
+    @media #{$mobileLarge} {
+      font-size: 14px;
+    }
+
+    @media #{$mobileMedium} {
+      font-size: 12px;
+    }
+  }
+
+  h6 {
+    text-align: center;
+    margin-bottom: 0;
+    color: $textColor;
+
+    @media #{$mobileLarge} {
+      font-size: 14px;
+    }
+
+    @media #{$mobileMedium} {
+      font-size: 12px;
+    }
+  }
+}
+
+.subscribe_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media #{$mobileLarge} {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.subscribe_section form input {
+  color: #56778f;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  padding: 5px 10px;
+  font-size: 14px;
+  outline: 0;
+  margin-top: 10px;
+  height: 36px;
+
+  @media #{$mobileLarge} {
+    width: 100%;
+  }
+
+  @media #{$mobileMedium} {
+    width: 100%;
+  }
+}
+
+.subscribe_section form select {
+  color: #56778f;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  padding: 5px 10px;
+  outline: 0;
+  margin-top: 10px;
+
+  @media #{$mobileLarge} {
+    width: 100%;
+  }
+
+  @media #{$mobileMedium} {
+    width: 100%;
+  }
+}
+
+.newsletter_submitBtn {
+  padding: 5px 10px;
+  background: $thirdBtnColor;
+  color: #ffffff;
+  border: 0;
+  outline: 0;
+  border-radius: 2px;
+  height: 36px;
+  transition: all 0.5s ease-in-out;
+
+  @media #{$mobileLarge} {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  @media #{$mobileMedium} {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.newsletter_submitBtn:hover {
+  background: $secondaryBtnColor;
+}
+
+.fa-paper-plane:before {
+  color: #ffffff;
+}
+
+//============Footer Menubar Style==============//
+.footer_menubar {
+  margin-top: 60px;
+}
+
+.company_info {
+  text-align: left;
+
+  @media #{$tablet} {
+    margin-bottom: 50px;
+  }
+
+  @media #{$mobileLarge} {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  @media #{$mobileMedium} {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .footer_menu_logo {
+    max-width: 300px;
+    max-height: 90px;
+
+    @media #{$mobileLarge} {
+      margin: 0 auto;
+    }
+
+    @media #{$mobileMedium} {
+      margin: 0 auto;
+    }
+
+    .footer_menu_logoImg {
+      width: 100%;
+    }
+  }
+
+  .company_address {
+    @media #{$mobileLarge} {
+      text-align: center;
+    }
+
+    @media #{$mobileMedium} {
+      text-align: center;
+    }
+
+    h6 {
+      color: $textColor;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    p {
+      color: $textColor;
+      font-size: 14px;
+      font-weight: 400;
+      margin-top: 1rem;
+      margin-bottom: 0 !important;
+    }
+
+    .fa-mobile:before {
+      color: #000;
+    }
+
+    p a {
+      text-decoration: none !important;
+      color: $textColor;
+      transition: all 0.5s ease-in-out;
+    }
+
+    p a:hover {
+      color: $thirdTextColor;
+    }
+  }
+
+  .footer_socialmedia {
+    padding-top: 15px;
+
+    a {
+      i.fa-facebook-f:before,
+      i.fa-instagram:before,
+      i.fa-whatsapp:before,
+      i.fa-twitter:before,
+      i.fa-youtube:before {
+        color: $thirdTextColor;
+        font-size: 22px;
+        cursor: pointer;
+        padding-right: 5px;
+      }
+    }
+  }
+}
+
+.category_list {
+  text-align: left;
+
+  @media #{$tablet} {
+    margin-bottom: 50px;
+  }
+
+  @media #{$mobileLarge} {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  @media #{$mobileMedium} {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  h6 {
+    color: $thirdTextColor;
+    padding-left: 32px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  ul li a {
+    text-decoration: none !important;
+    color: $textColor;
+    transition: all 0.5s ease-in-out;
+  }
+
+  ul li a:hover {
+    color: $thirdTextColor;
+  }
+}
+
+.ourComany_list {
+  text-align: left;
+
+  @media #{$tablet} {
+    margin-bottom: 50px;
+  }
+
+  @media #{$mobileLarge} {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  @media #{$mobileMedium} {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  h6 {
+    color: $thirdTextColor;
+    padding-left: 32px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  ul li a {
+    text-decoration: none !important;
+    color: $textColor;
+    transition: all 0.5s ease-in-out;
+  }
+
+  ul li a:hover {
+    color: $thirdTextColor;
+  }
+}
+
+.help_info_list {
+  text-align: left;
+
+  @media #{$tablet} {
+    margin-bottom: 50px;
+  }
+
+  @media #{$mobileLarge} {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  @media #{$mobileMedium} {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  h6 {
+    color: $thirdTextColor;
+    padding-left: 32px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  ul li a {
+    text-decoration: none !important;
+    color: $textColor;
+    transition: all 0.5s ease-in-out;
+  }
+
+  ul li a:hover {
+    color: $thirdTextColor;
+  }
+}
+
+.copyright-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+
+  @media #{$mobileLarge} {
+    flex-direction: column;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  @media #{$mobileMedium} {
+    flex-direction: column;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .copyright_text h5 {
+    color: $fourthTextColor;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .creditCard_image {
+    max-width: 300px;
+    max-height: 39px;
+    cursor: pointer;
+
+    @media #{$mobileLarge} {
+      padding: 20px 0;
+    }
+
+    .creditCard_img {
+      width: 100%;
+    }
+  }
+}
