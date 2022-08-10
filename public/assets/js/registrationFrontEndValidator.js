@@ -1,3 +1,4 @@
+require("dotenv").config();
 //selection
 // username
 const usernameInputEl = document.getElementById("userName");
