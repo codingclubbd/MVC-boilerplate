@@ -463,7 +463,7 @@
 async function searchUsers() {
   const username = usernameInputEl.value;
   const response = await fetch(
-    `${process.env.APP_URL}/api/auth/checkUsername/${username}`
+    `<%=process.env.APP_URL%>/api/auth/checkUsername/${username}`
   );
 
   const result = await response.json();
