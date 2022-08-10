@@ -1,107 +1,78 @@
 //dependencies
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-// user schema 
-const userSchema = new mongoose.Schema({
+// user schema
+const userSchema = new mongoose.Schema(
+  {
     firstName: {
-        type: String,
-        required: true,
-        minLength: 1,
-        trim: true
+      type: String,
+      required: true,
+      minLength: 1,
+      trim: true,
     },
     lastName: {
-        type: String,
-        minLength: 1,
-        trim: true,
-        default: null
+      type: String,
+      minLength: 1,
+      trim: true,
+      default: null,
     },
     username: {
-        type:String,
-        required: true,
-        minLength: 6,
-        trim: true, 
-        unique: true
+      type: String,
+      required: true,
+      minLength: 6,
+      trim: true,
+      unique: true,
     },
     email: {
-        type:String,
-        required: true,
-        trim: true,
-        lowercase:true,
-        unique: true,
-        validator:{
-            validate: (v)=>{
-                return  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v)
-            }
-        }
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+      unique: true,
+      validator: {
+        validate: (v) => {
+          return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+            v
+          );
+        },
+      },
     },
-    password:{
-        type:String,
-        required: true   
+    password: {
+      type: String,
+      required: true,
     },
     role: {
-        enum: ["superAdmin", "admin", "customer"]
+      enum: ["superAdmin", "admin", "customer"],
+    },
+    status: {
+      type: String,
+      enum: ["unverified", "verified", "suspended", "blocked"],
     },
     address: {
-        type:[],
-        default: []
+      type: [],
+      default: [],
     },
     company: {
-        type: String,
-        trim:true,
-        default: null
+      type: String,
+      trim: true,
+      default: null,
     },
-    phone:{
-        type:String,
-        trim:true,
-        default: null
+    phone: {
+      type: String,
+      trim: true,
+      default: null,
     },
-
-
-},{
-    timestamps: true
-})
+  },
+  {
+    timestamps: true,
+  }
+);
 
 // model
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model("User", userSchema);
 
 // exports
 module.exports = User;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* 
 1. First Name : String

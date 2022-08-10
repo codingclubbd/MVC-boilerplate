@@ -1,21 +1,20 @@
 //selection
 // username
-const usernameInputEl = document.getElementById('userName');
-const usernameErrorEl = document.getElementById('usernameError');
+const usernameInputEl = document.getElementById("userName");
+const usernameErrorEl = document.getElementById("usernameError");
 
 // email
-const emailInputEl = document.getElementById('email');
-const emailErrorEl = document.getElementById('emailError');
+const emailInputEl = document.getElementById("email");
+const emailErrorEl = document.getElementById("emailError");
 
 //password
-const passwordEl = document.getElementById('password');
+const passwordEl = document.getElementById("password");
 const passwordError = document.getElementById("passwordError");
 // confirm password
-const confirmPasswordEl = document.getElementById('confirm_password');
-const confirmPassErr = document.getElementById('confirmPasswordError')
+const confirmPasswordEl = document.getElementById("confirm_password");
+const confirmPassErr = document.getElementById("confirmPasswordError");
 
-
-// hidden the error 
+// hidden the error
 usernameErrorEl.hidden = true;
 emailErrorEl.hidden = true;
 confirmPassErr.hidden = true;
@@ -24,7 +23,6 @@ passwordError.hidden = true;
 // typing detector
 let typingTimer;
 const doneTypingInterval = 500;
-
 
 //on keyup, start the countdown
 usernameInputEl.addEventListener("keyup", function () {
@@ -45,18 +43,19 @@ usernameInputEl.addEventListener("keydown", function () {
 // send request for search
 async function searchUsers() {
   const username = usernameInputEl.value;
-  const response = await fetch(`http://localhost:3000/api/auth/checkUsername/${username}`);
+  const response = await fetch(
+    `${process.env.APP_URL}/api/auth/checkUsername/${username}`
+  );
 
-  const result = await response.json()
+  const result = await response.json();
   usernameErrorEl.hidden = false;
   usernameErrorEl.innerHTML = result.msg;
   if (result.status) {
-    usernameErrorEl.style.color = "green"
+    usernameErrorEl.style.color = "green";
   } else {
-    usernameErrorEl.style.color = "red"
+    usernameErrorEl.style.color = "red";
   }
 }
-
 
 //on keyup, start the countdown
 emailInputEl.addEventListener("keyup", function () {
@@ -78,82 +77,79 @@ emailInputEl.addEventListener("keydown", function () {
 async function checkEmail() {
   const email = emailInputEl.value;
 
-  const isValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  const isValid =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      email
+    );
   if (isValid) {
-    const response = await fetch(`http://localhost:3000/api/auth/checkEmail/${email}`);
+    const response = await fetch(
+      `http://localhost:3000/api/auth/checkEmail/${email}`
+    );
 
-    const result = await response.json()
+    const result = await response.json();
 
     if (!result.status) {
       emailErrorEl.hidden = false;
       emailErrorEl.innerHTML = result.msg;
-      emailErrorEl.style.color = "red"
+      emailErrorEl.style.color = "red";
     }
-
   } else {
     emailErrorEl.hidden = false;
     emailErrorEl.textContent = "Email is not valid!";
-    emailErrorEl.style.color = "red"
+    emailErrorEl.style.color = "red";
   }
 }
 
 // password validator
 function validate(p) {
-  var errors = []
+  var errors = [];
 
   if (p.length < 8) {
-    errors.push("8 characters")
+    errors.push("8 characters");
   }
   if (p.search(/[a-z]/) < 0) {
-    errors.push("1 lowercase letter")
+    errors.push("1 lowercase letter");
   }
   if (p.search(/[A-Z]/) < 0) {
-    errors.push("1 uppercase letter")
+    errors.push("1 uppercase letter");
   }
   if (p.search(/[0-9]/) < 0) {
-    errors.push("1 digit.")
+    errors.push("1 digit.");
   }
   if (p.search(/[\!\@\#\$\%\^\&\*\(\)\_\+\.\,\;\:\-]/) < 0) {
-    errors.push("1 special character.")
+    errors.push("1 special character.");
   }
 
   return errors;
 }
 
-
 // check password
 const checkPassword = (password, confirmPassword) => {
-  let validationResult = []
+  let validationResult = [];
   if (password) {
-     validationResult = validate(password)
+    validationResult = validate(password);
   }
 
   if (validationResult.length > 0) {
-    const errorMsg = "Your password must contain at least " + validationResult.join(',');
+    const errorMsg =
+      "Your password must contain at least " + validationResult.join(",");
 
     if (password) {
       passwordError.hidden = false;
-      passwordError.textContent = errorMsg
-
+      passwordError.textContent = errorMsg;
     }
-
   }
 
   if (confirmPassword) {
-     
     if (!(passwordEl.value === confirmPasswordEl.value)) {
       confirmPassErr.hidden = false;
-      confirmPassErr.textContent = "Password doesn't match"
+      confirmPassErr.textContent = "Password doesn't match";
     } else {
       confirmPassErr.hidden = true;
-      confirmPassErr.textContent = ''
+      confirmPassErr.textContent = "";
     }
   }
-
-}
-
-
-
+};
 
 //on keyup, start the countdown
 passwordEl.addEventListener("keyup", function () {
@@ -162,7 +158,10 @@ passwordEl.addEventListener("keyup", function () {
   passwordError.hidden = true;
 
   if (passwordEl.value) {
-    typingTimer = setTimeout(() => checkPassword(passwordEl.value), doneTypingInterval);
+    typingTimer = setTimeout(
+      () => checkPassword(passwordEl.value),
+      doneTypingInterval
+    );
   }
 });
 
@@ -171,9 +170,6 @@ passwordEl.addEventListener("keydown", function () {
   clearTimeout(typingTimer);
 });
 
-
-
-
 //on keyup, start the countdown
 confirmPasswordEl.addEventListener("keyup", function () {
   clearTimeout(typingTimer);
@@ -181,7 +177,10 @@ confirmPasswordEl.addEventListener("keyup", function () {
   confirmPassErr.hidden = true;
 
   if (confirmPasswordEl.value) {
-    typingTimer = setTimeout(() => checkPassword(null, confirmPasswordEl.value), doneTypingInterval);
+    typingTimer = setTimeout(
+      () => checkPassword(null, confirmPasswordEl.value),
+      doneTypingInterval
+    );
   }
 });
 
@@ -189,6 +188,3 @@ confirmPasswordEl.addEventListener("keyup", function () {
 confirmPasswordEl.addEventListener("keydown", function () {
   clearTimeout(typingTimer);
 });
-
-
-

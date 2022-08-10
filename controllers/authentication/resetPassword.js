@@ -33,10 +33,6 @@ const resetPassword = async (req, res) => {
 
             const otp = await otpObj.save()
 
-            // return;
-            // const token = await sign({
-            //     email: otp.email
-            // },process.env.OTP_SECRET,{expiresIn:"120000"})
 
 
          await sendEmailToUser([user.email], {
@@ -45,12 +41,10 @@ const resetPassword = async (req, res) => {
             attachments: []
          }, function (err, info) {
 
-            // console.log(err, info)
+           
 
                if(info?.messageId){
                 res.render('pages/auth/verifyOtp', {error:{}, otp:{value:null,otpId: otp._id}});
-
-                // res.redirect(`/otpVerification?token=${token}`)
                }else{
                 throw err;
                }
