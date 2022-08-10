@@ -1,4 +1,3 @@
-require("dotenv").config();
 //selection
 // username
 const usernameInputEl = document.getElementById("userName");
@@ -40,23 +39,6 @@ usernameInputEl.addEventListener("keyup", function () {
 usernameInputEl.addEventListener("keydown", function () {
   clearTimeout(typingTimer);
 });
-
-// send request for search
-async function searchUsers() {
-  const username = usernameInputEl.value;
-  const response = await fetch(
-    `${process.env.APP_URL}/api/auth/checkUsername/${username}`
-  );
-
-  const result = await response.json();
-  usernameErrorEl.hidden = false;
-  usernameErrorEl.innerHTML = result.msg;
-  if (result.status) {
-    usernameErrorEl.style.color = "green";
-  } else {
-    usernameErrorEl.style.color = "red";
-  }
-}
 
 //on keyup, start the countdown
 emailInputEl.addEventListener("keyup", function () {

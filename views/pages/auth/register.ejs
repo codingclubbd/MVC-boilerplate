@@ -30,9 +30,7 @@
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
   </script>
 
-  <!------script js------>
-  <script src="/assets/js/registrationFrontEndValidator.js" defer></script>
-
+  
 </head>
 
 <!-- register section start -->
@@ -448,6 +446,8 @@
   <!-----Footer End----->
   <script  src="assets/js/eye.js"></script>
 
+
+
 <script >
       // password toggler
     const passwordToggler = document.querySelector(".passwordToggler")
@@ -458,7 +458,28 @@
     const confirmPasswordField = document.querySelector(".confirmPasswordFiled")
     passwordTogglerFunc(confirmPasswordToggler, confirmPasswordField)
     
+
+// send request for search
+async function searchUsers() {
+  const username = usernameInputEl.value;
+  const response = await fetch(
+    `${process.env.APP_URL}/api/auth/checkUsername/${username}`
+  );
+
+  const result = await response.json();
+  usernameErrorEl.hidden = false;
+  usernameErrorEl.innerHTML = result.msg;
+  if (result.status) {
+    usernameErrorEl.style.color = "green";
+  } else {
+    usernameErrorEl.style.color = "red";
+  }
+}
+
 </script>
+
+  <!------script js------>
+  <script src="/assets/js/registrationFrontEndValidator.js"></script>
 </body>
 
 </html>
